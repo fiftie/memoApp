@@ -7,33 +7,39 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MemoTableViewController: UITableViewController {
 	
 	let userDefaults = UserDefaults.standard;
-	var memos = [String]();
+	var memos: Results<MemoModel>!;
 	
 	@IBAction func unwindToMemoList(sender: UIStoryboardSegue) {
 		guard let sourceVC = sender.source as? MemoViewController, let memo = sourceVC.memo else {
 			return;
 		}
 		if let selectedIndexPath = self.tableView.indexPathForSelectedRow {
-			self.memos[selectedIndexPath.row] = memo;
+			let data = self.memos[selectedIndexPath.row];
+			let realm = try! Realm();
+			try! realm.write {
+				data.memo = memo;
+			}
 		} else {
-			self.memos.append(memo);
+			let memoModel: MemoModel = MemoModel();
+			memoModel.memo = memo;
+			let realm = try! Realm();
+			try! realm.write {
+				realm.add(memoModel);
+			}
 		}
-		self.userDefaults.set(self.memos, forKey: "memos");
 		self.tableView.reloadData();
 	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		let Data = try! Realm();
 		
-		if self.userDefaults.object(forKey: "memos") != nil {
-			self.memos = self.userDefaults.stringArray(forKey: "memos")!
-		} else {
-			self.memos = ["memo1", "memo2", "memo3"];
-		}
+		self.memos = Data.objects(MemoModel.self);
 		
 		// Uncomment the following line to preserve selection between presentations
 		// self.clearsSelectionOnViewWillAppear = false
@@ -58,7 +64,7 @@ class MemoTableViewController: UITableViewController {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "MemoTableViewCell", for: indexPath)
 		
 		// Configure the cell...
-		cell.textLabel?.text = self.memos[indexPath.row];
+		cell.textLabel?.text = self.memos[indexPath.row].memo;
 		
 		return cell
 	}
@@ -75,8 +81,11 @@ class MemoTableViewController: UITableViewController {
 	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 		if editingStyle == .delete {
 			// Delete the row from the data source
-			self.memos.remove(at: indexPath.row);
-			self.userDefaults.set(self.memos, forKey: "memos");
+			let data = self.memos[indexPath.row];
+			let realm = try! Realm();
+			try! realm.write {
+				realm.delete(data);
+			}
 			tableView.deleteRows(at: [indexPath], with: .fade)
 		}
 	}
@@ -100,15 +109,14 @@ class MemoTableViewController: UITableViewController {
 	
 	// In a storyboard-based application, you will often want to do a little preparation before navigation
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-	// Get the new view controller using segue.destination.
-	// Pass the selected object to the new view controller.
+		// Get the new view controller using segue.destination.
+		// Pass the selected object to the new view controller.
 		guard let identifier = segue.identifier else {
 			return;
 		}
 		if identifier == "editMemo" {
 			let memoVC = segue.destination as! MemoViewController
-			memoVC.memo = self.memos[(self.tableView.indexPathForSelectedRow?.row)!];
+			memoVC.memo = self.memos[(self.tableView.indexPathForSelectedRow?.row)!].memo;
 		}
 	}
-	
 }
