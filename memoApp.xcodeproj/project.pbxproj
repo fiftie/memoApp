@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		1893729A22FBB954007B3475 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893729922FBB954007B3475 /* AppDelegate.swift */; };
-		1893729C22FBB954007B3475 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893729B22FBB954007B3475 /* ViewController.swift */; };
 		1893729F22FBB954007B3475 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1893729D22FBB954007B3475 /* Main.storyboard */; };
 		189372A122FBB955007B3475 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 189372A022FBB955007B3475 /* Assets.xcassets */; };
 		189372A422FBB955007B3475 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 189372A222FBB955007B3475 /* LaunchScreen.storyboard */; };
 		189372AF22FBB955007B3475 /* memoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189372AE22FBB955007B3475 /* memoAppTests.swift */; };
 		189372BA22FBB955007B3475 /* memoAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189372B922FBB955007B3475 /* memoAppUITests.swift */; };
+		189372CA22FBBF79007B3475 /* MemoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189372C922FBBF79007B3475 /* MemoTableViewController.swift */; };
+		189372CE22FBC8C7007B3475 /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189372CD22FBC8C7007B3475 /* MemoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +37,6 @@
 /* Begin PBXFileReference section */
 		1893729622FBB954007B3475 /* memoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = memoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1893729922FBB954007B3475 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1893729B22FBB954007B3475 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1893729E22FBB954007B3475 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		189372A022FBB955007B3475 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		189372A322FBB955007B3475 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +47,8 @@
 		189372B522FBB955007B3475 /* memoAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = memoAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		189372B922FBB955007B3475 /* memoAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memoAppUITests.swift; sourceTree = "<group>"; };
 		189372BB22FBB955007B3475 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		189372C922FBBF79007B3475 /* MemoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoTableViewController.swift; sourceTree = "<group>"; };
+		189372CD22FBC8C7007B3475 /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		1893728D22FBB954007B3475 = {
 			isa = PBXGroup;
 			children = (
+				189372C922FBBF79007B3475 /* MemoTableViewController.swift */,
 				1893729822FBB954007B3475 /* memoApp */,
 				189372AD22FBB955007B3475 /* memoAppTests */,
 				189372B822FBB955007B3475 /* memoAppUITests */,
@@ -98,7 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				1893729922FBB954007B3475 /* AppDelegate.swift */,
-				1893729B22FBB954007B3475 /* ViewController.swift */,
+				189372CD22FBC8C7007B3475 /* MemoViewController.swift */,
 				1893729D22FBB954007B3475 /* Main.storyboard */,
 				189372A022FBB955007B3475 /* Assets.xcassets */,
 				189372A222FBB955007B3475 /* LaunchScreen.storyboard */,
@@ -256,8 +259,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1893729C22FBB954007B3475 /* ViewController.swift in Sources */,
 				1893729A22FBB954007B3475 /* AppDelegate.swift in Sources */,
+				189372CA22FBBF79007B3475 /* MemoTableViewController.swift in Sources */,
+				189372CE22FBC8C7007B3475 /* MemoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,24 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GH7-bQ-V5d">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--New Memo-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MemoViewController" customModule="memoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HBd-b2-eF5">
+                                <rect key="frame" x="30" y="118" width="354" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="memoTextFieldChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="EwL-Bo-y4X"/>
+                                </connections>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HBd-b2-eF5" secondAttribute="trailing" constant="30" id="Ga7-b0-Pu7"/>
+                            <constraint firstItem="HBd-b2-eF5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Pwj-QK-YNA"/>
+                            <constraint firstItem="HBd-b2-eF5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="bPv-sn-Nyc"/>
+                            <constraint firstItem="HBd-b2-eF5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="zJU-Gs-O9g"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="New Memo" id="nQH-g5-8Qa">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="tbd-nq-10J">
+                            <connections>
+                                <action selector="cancel:" destination="BYZ-38-t0r" id="MVZ-lT-LEP"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Cpm-px-Wmm">
+                            <connections>
+                                <segue destination="iQ7-2h-sJb" kind="unwind" unwindAction="unwindToMemoListWithSender:" id="WSj-KD-app"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="memoTextField" destination="HBd-b2-eF5" id="Qc2-GZ-azJ"/>
+                        <outlet property="saveButton" destination="Cpm-px-Wmm" id="DGm-vj-3gQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="iQ7-2h-sJb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
+            <point key="canvasLocation" x="3152.1739130434785" y="132.58928571428572"/>
+        </scene>
+        <!--My Memos-->
+        <scene sceneID="QT0-3B-SfA">
+            <objects>
+                <tableViewController id="pe5-t0-4l6" customClass="MemoTableViewController" customModule="memoApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="0rR-eu-hmH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MemoTableViewCell" textLabel="hSy-t2-Laq" style="IBUITableViewCellStyleDefault" id="c3R-BT-9HB">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c3R-BT-9HB" id="0cf-rA-RuY">
+                                    <rect key="frame" x="0.0" y="0.0" width="376" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hSy-t2-Laq">
+                                            <rect key="frame" x="20" y="0.0" width="356" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="editMemo" id="fTt-Da-6G8"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="pe5-t0-4l6" id="go1-zz-uxC"/>
+                            <outlet property="delegate" destination="pe5-t0-4l6" id="xEd-1I-7p9"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="My Memos" id="PuU-Uy-wPQ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="LEX-k7-DOL">
+                            <connections>
+                                <segue destination="phr-xe-Rr3" kind="presentation" identifier="addMemo" id="vw2-wp-gA4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UsF-iR-HkG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1531.8840579710145" y="132.58928571428572"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="74Z-2q-d8R">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GH7-bQ-V5d" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1L9-iB-ZVm">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="pe5-t0-4l6" kind="relationship" relationship="rootViewController" id="ped-Ee-bH6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0FG-8s-lnP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="621.73913043478262" y="132.58928571428572"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="TSg-6q-MTY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="phr-xe-Rr3" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nO3-Oh-a8X">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="81o-9M-Niy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6G9-N8-zkh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2290" y="515"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="fTt-Da-6G8"/>
+    </inferredMetricsTieBreakers>
 </document>
